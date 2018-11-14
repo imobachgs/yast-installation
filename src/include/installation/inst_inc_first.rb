@@ -60,14 +60,17 @@ module Yast
 
       Builtins.y2milestone("Adjusting language settings")
 
-      # properly set up initial language
-      Installation.encoding = Console.SelectFont(Language.language)
-      if Ops.get_boolean(UI.GetDisplayInfo, "HasFullUtf8Support", true)
-        Installation.encoding = "UTF-8"
+      unless Language.SwitchToEnglishIfNeeded(true)
+        # properly set up initial language
+        Installation.encoding = Console.SelectFont(Language.language)
+        if Ops.get_boolean(UI.GetDisplayInfo, "HasFullUtf8Support", true)
+            Installation.encoding = "UTF-8"
+        end
+
+        UI.SetLanguage(Language.language, Installation.encoding)
+        WFM.SetLanguage(Language.language, "UTF-8")
       end
 
-      UI.SetLanguage(Language.language, Installation.encoding)
-      WFM.SetLanguage(Language.language, "UTF-8")
       UI.RecordMacro(Ops.add(Directory.logdir, "/macro_inst_initial.ycp"))
 
       Builtins.y2milestone("Adjusting first stage modules")
