@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Fri Nov 14 15:35:09 UTC 2018 - igonzalezsosa@suse.com
+
+- Prefer fbiterm whenever is possible for textmode installation
+  (fate#325746).
+- 4.1.26
+
+-------------------------------------------------------------------
 Fri Nov  2 13:23:30 UTC 2018 - schubi@suse.de
 
 - Writing security settings in first AY installation stage.
